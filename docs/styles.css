@@ -1,0 +1,588 @@
+:root {
+  --bg: #f3eee6;
+  --surface: #fffbf5;
+  --paper: #fffdf8;
+  --ink: #1a2332;
+  --ink-soft: #4a5568;
+  --accent: #1b6b4a;
+  --accent-soft: #d8f3e7;
+  --warm: #c45c26;
+  --red: #c62828;
+  --hero-top: #e8f5f0;
+  --hero-bottom: #fff6ee;
+  --line: #94a3b8;
+  --bold: #1a2332;
+  --mash: #e8dfd2;
+  --shadow: 0 10px 28px rgba(26, 35, 50, 0.08);
+  --radius: 18px;
+  --font: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", "Segoe UI", sans-serif;
+  --display: "Noto Serif TC", "Songti TC", "PMingLiU", Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -10%, var(--hero-top), transparent 55%),
+    radial-gradient(ellipse 70% 45% at 100% 0%, var(--hero-bottom), transparent 50%),
+    var(--bg);
+  line-height: 1.65;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--warm);
+}
+
+.wrap {
+  width: min(920px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+/* —— Top bar —— */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0 0.5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.brand-name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.lang-switch {
+  display: inline-flex;
+  gap: 0.35rem;
+  margin-left: 0.25rem;
+}
+
+.chip {
+  appearance: none;
+  border: 1.5px solid var(--accent);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* —— Calendar sheet —— */
+.sheet {
+  margin: 1rem auto 2.5rem;
+  background: var(--paper);
+  border: 1.5px solid rgba(26, 35, 50, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.sheet-calendar {
+  border: 2px solid var(--accent);
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sheet-calendar.is-red-day {
+  border-color: var(--red);
+}
+
+.sheet-calendar.is-red-day .perforation span,
+.sheet-calendar.is-red-day .cal-app-name,
+.sheet-calendar.is-red-day .cal-header,
+.sheet-calendar.is-red-day .cal-day-huge,
+.sheet-calendar.is-red-day .cal-side,
+.sheet-calendar.is-red-day .cal-week-bar,
+.sheet-calendar.is-red-day .yi-box,
+.sheet-calendar.is-red-day .yi-box strong {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.sheet-calendar.is-red-day .perforation span {
+  background: var(--red);
+}
+
+.sheet-calendar.is-red-day .btn-primary {
+  background: var(--red);
+  box-shadow: 0 6px 16px rgba(198, 40, 40, 0.25);
+}
+
+.sheet-calendar.is-red-day .btn-ghost {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.perforation {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 0.85rem 1.1rem 0.25rem;
+}
+
+.perforation span {
+  width: 7px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: var(--accent);
+  opacity: 0.55;
+}
+
+.hero {
+  text-align: center;
+  padding: 0.5rem 1.5rem 1.75rem;
+}
+
+.cal-hero {
+  padding: 0.35rem 1.35rem 1.6rem;
+}
+
+.cal-app-name {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0.15rem 0 0.85rem;
+  color: var(--accent);
+  line-height: 1.3;
+}
+
+.cal-logo {
+  width: 112px;
+  height: 112px;
+  margin: 0 auto 1rem;
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(26, 35, 50, 0.06);
+}
+
+.cal-header {
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+
+.cal-year {
+  font-family: var(--display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.cal-month-en {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin-top: 0.15rem;
+}
+
+.cal-month-zh {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 0.1rem;
+}
+
+.cal-day-row {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr 2.2rem;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.35rem 0 0.55rem;
+}
+
+.cal-side {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.cal-day-huge {
+  font-family: var(--display);
+  font-size: clamp(5.5rem, 22vw, 7.5rem);
+  font-weight: 700;
+  line-height: 0.9;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+}
+
+.cal-week-bar {
+  border-top: 1.5px solid var(--accent);
+  border-bottom: 1.5px solid var(--accent);
+  padding: 0.4rem 0.5rem;
+  margin: 0 auto 0.95rem;
+  max-width: 18rem;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+}
+
+.cal-blurb {
+  margin: 0.95rem auto 0;
+  max-width: 22rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.hero .eyebrow {
+  color: var(--warm);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.4rem;
+}
+
+.hero h1:not(.cal-app-name) {
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 4.5vw, 2.35rem);
+  margin: 0 0 0.55rem;
+  color: var(--accent);
+  line-height: 1.25;
+}
+
+.hero p:not(.cal-blurb) {
+  margin: 0 auto;
+  max-width: 36rem;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+}
+
+.yi-box {
+  margin: 0 auto;
+  max-width: 22rem;
+  border: 1.5px solid var(--accent);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  background: linear-gradient(180deg, #f7fff9, var(--paper));
+  text-align: left;
+  color: var(--ink);
+}
+
+.yi-box strong {
+  display: inline-block;
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(27, 107, 74, 0.25);
+}
+
+.btn-primary:hover {
+  color: #fff;
+}
+
+.btn-ghost {
+  background: var(--surface);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-ghost:hover {
+  color: var(--accent);
+}
+
+/* —— Sections —— */
+main {
+  padding-bottom: 3rem;
+}
+
+.section {
+  margin: 0 0 1.35rem;
+  padding: 1.35rem 1.4rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid rgba(26, 35, 50, 0.06);
+  border-radius: var(--radius);
+}
+
+.section h2 {
+  font-family: var(--display);
+  font-size: 1.35rem;
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+}
+
+.section .lead {
+  margin: 0 0 1rem;
+  color: var(--ink-soft);
+}
+
+.grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid rgba(27, 107, 74, 0.12);
+  border-radius: 14px;
+  padding: 1rem 1.05rem;
+}
+
+.card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.02rem;
+  color: var(--ink);
+}
+
+.card p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.card .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin-bottom: 0.45rem;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.steps li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.85rem 0.95rem;
+  background: var(--paper);
+  border-radius: 14px;
+  border: 1px solid rgba(26, 35, 50, 0.06);
+}
+
+.steps .n {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.steps strong {
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.steps span {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.tool-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tool-list li {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  background: var(--paper);
+  border-left: 3px solid var(--accent);
+}
+
+.tool-list b {
+  color: var(--accent);
+}
+
+.tool-list span {
+  color: var(--ink-soft);
+}
+
+@media (max-width: 560px) {
+  .tool-list li {
+    grid-template-columns: 1fr;
+  }
+}
+
+.note {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: #fff3d6;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.note.red {
+  background: #fce8e6;
+  border-left: 3px solid var(--red);
+}
+
+/* Privacy prose */
+.prose h2 {
+  font-family: var(--display);
+  color: var(--accent);
+  font-size: 1.25rem;
+  margin: 1.6rem 0 0.45rem;
+}
+
+.prose h3 {
+  font-size: 1.05rem;
+  margin: 1.1rem 0 0.35rem;
+  color: var(--ink);
+}
+
+.prose p,
+.prose li {
+  color: var(--ink-soft);
+}
+
+.prose ul {
+  padding-left: 1.2rem;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0 0 1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2.5rem;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+footer .built {
+  color: var(--warm);
+  font-weight: 700;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.lang-zh .only-en,
+.lang-en .only-zh {
+  display: none !important;
+}
